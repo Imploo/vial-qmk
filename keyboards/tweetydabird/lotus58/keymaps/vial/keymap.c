@@ -11,6 +11,25 @@ void keyboard_post_init_user(void) {
 }
 #endif
 
+// Function to set the color for different layers
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+        case 0: // Base layer
+            rgblight_mode(RGBLIGHT_MODE_RAINBOW_SWIRL); // Set rainbow mode
+            break;
+        case 1: // Function layer
+        // rgblight_mode(RGBLIGHT_MODE_TWINKLE);
+            rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
+            rgblight_sethsv_noeeprom(120, 255, rgblight_get_val());
+            break;
+        default:
+            rgblight_setrgb(RGB_WHITE); // Default to white if unknown layer
+            break;
+    }
+    return state;
+}
+
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [0] = LAYOUT(
@@ -25,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		____, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, ____, ____, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11,
 		____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____,
 		____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____, ____,
-		____, ____, ____, ____, ____, ____, KC_PGDN, KC_PGUP, ____, ____, ____, ____, ____, ____,
+		____, ____, ____, ____, ____, ____, QK_BOOT, QK_BOOT, ____, ____, ____, ____, ____, ____,
 		____, ____, ____, ____, ____, ____, ____, ____
 	),
 
@@ -81,19 +100,19 @@ static void print_status_narrow(void) {
         default:
             oled_write_P(PSTR("Undef"), false);
     }
-	
+
 	// Display capslock
     oled_advance_page(true);
     led_t led_usb_state = host_keyboard_led_state();
     oled_write_ln_P(PSTR("Caps- lock"), led_usb_state.caps_lock);
-	
+
 #ifdef AUTO_SHIFT_ENABLE
 
 	bool autoshift = get_autoshift_state();
 	oled_advance_page(true);
 	oled_write_P(PSTR("Auto-Shift"), autoshift);
 	oled_advance_page(true);
-	
+
 #endif
 
 }
@@ -102,5 +121,6 @@ bool oled_task_user(void) {
     print_status_narrow();
 	return false;
 }
+
 
 #endif
