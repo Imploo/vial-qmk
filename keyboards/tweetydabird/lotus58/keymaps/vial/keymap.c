@@ -11,8 +11,8 @@ void keyboard_post_init_user(void) {
 }
 #endif
 
-bool is_alt_tab_active = false; 
-bool is_shift_active = false; 
+bool is_alt_tab_active = false;
+bool is_ctl_tab_active = false;
 uint16_t alt_tab_timer = 0;     // we will be using them soon.
 
 enum custom_keycodes {          // Make sure have the awesome keycode ready
@@ -28,23 +28,49 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
             if (!is_alt_tab_active) {
                 is_alt_tab_active = true;
-                register_code(KC_LALT);
+                register_code(KC_LGUI);
             }
             alt_tab_timer = timer_read();
             register_code(KC_TAB);
-            } else {
-                unregister_code(KC_TAB);
-            }
+        } else {
+            unregister_code(KC_TAB);
+        }
         break;
     case ALT_TABR:
         if (record->event.pressed) {
             if (!is_alt_tab_active) {
                 is_alt_tab_active = true;
-                register_code(KC_LALT);
+                register_code(KC_LGUI);
+            }
+            alt_tab_timer = timer_read();
+            register_code(KC_LSFT);
+            register_code(KC_TAB);
+        } else {
+            unregister_code(KC_TAB);
+            unregister_code(KC_LSFT);
+        }
+        break;
+    case CTL_TAB:
+        if (record->event.pressed) {
+            if (!is_ctl_tab_active) {
+                is_ctl_tab_active = true;
+                register_code(KC_LCTL);
             }
             alt_tab_timer = timer_read();
             register_code(KC_TAB);
+        } else {
+            unregister_code(KC_TAB);
+        }
+        break;
+    case CTL_TABR:
+        if (record->event.pressed) {
+            if (!is_ctl_tab_active) {
+                is_ctl_tab_active = true;
+                register_code(KC_LCTL);
+            }
+            alt_tab_timer = timer_read();
             register_code(KC_LSFT);
+            register_code(KC_TAB);
         } else {
             unregister_code(KC_TAB);
             unregister_code(KC_LSFT);
@@ -56,9 +82,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 void matrix_scan_user(void) { // The very important timer.
   if (is_alt_tab_active) {
-    if (timer_elapsed(alt_tab_timer) > 1500) {
-      unregister_code(KC_LALT);
+    if (timer_elapsed(alt_tab_timer) > 1000) {
+      unregister_code(KC_LGUI);
       is_alt_tab_active = false;
+    }
+  }
+  if (is_ctl_tab_active) {
+    if (timer_elapsed(alt_tab_timer) > 1000) {
+      unregister_code(KC_LCTL);
+      is_ctl_tab_active = false;
     }
   }
 }
