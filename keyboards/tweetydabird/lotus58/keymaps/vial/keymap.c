@@ -11,6 +11,58 @@ void keyboard_post_init_user(void) {
 }
 #endif
 
+bool is_alt_tab_active = false; 
+bool is_shift_active = false; 
+uint16_t alt_tab_timer = 0;     // we will be using them soon.
+
+enum custom_keycodes {          // Make sure have the awesome keycode ready
+  ALT_TAB = QK_KB_0,
+  ALT_TABR,
+  CTL_TAB,
+  CTL_TABR
+};
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) { // This will do most of the grunt work with the keycodes.
+    case ALT_TAB:
+        if (record->event.pressed) {
+            if (!is_alt_tab_active) {
+                is_alt_tab_active = true;
+                register_code(KC_LALT);
+            }
+            alt_tab_timer = timer_read();
+            register_code(KC_TAB);
+            } else {
+                unregister_code(KC_TAB);
+            }
+        break;
+    case ALT_TABR:
+        if (record->event.pressed) {
+            if (!is_alt_tab_active) {
+                is_alt_tab_active = true;
+                register_code(KC_LALT);
+            }
+            alt_tab_timer = timer_read();
+            register_code(KC_TAB);
+            register_code(KC_LSFT);
+        } else {
+            unregister_code(KC_TAB);
+            unregister_code(KC_LSFT);
+        }
+        break;
+  }
+  return true;
+}
+
+void matrix_scan_user(void) { // The very important timer.
+  if (is_alt_tab_active) {
+    if (timer_elapsed(alt_tab_timer) > 1500) {
+      unregister_code(KC_LALT);
+      is_alt_tab_active = false;
+    }
+  }
+}
+
 // Function to set the color for different layers
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {

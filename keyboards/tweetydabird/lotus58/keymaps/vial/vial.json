@@ -3,7 +3,24 @@
 	"author": "Markus Knutsson",
 	
 	"lighting": "qmk_rgblight",
-	
+	"customKeycodes": [
+    {"name": "Alt Tab",
+    "title": "Alt Tab",
+    "shortName": "ALT_TAB"
+    },
+    {"name": "Alt Tab R",
+    "title": "Alt Tab Reversed",
+    "shortName": "ALT_TABR"
+    },
+    {"name": "Ctl Tab",
+    "title": "Ctl Tab",
+    "shortName": "CTL_TAB"
+    },
+    {"name": "Ctl Tab R",
+    "title": "Ctl Tab Reversed",
+    "shortName": "CTL_TABR"
+    }
+  ],
 	"matrix": {
 		"rows": 10,
 		"cols": 6
