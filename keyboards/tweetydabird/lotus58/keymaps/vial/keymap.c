@@ -7,15 +7,16 @@
 #ifdef AUTO_SHIFT_ENABLE
 
 void keyboard_post_init_user(void) {
+    rgblight_set_effect_range(2, 60);
 	autoshift_disable();
 }
 #endif
 
 bool is_alt_tab_active = false;
 bool is_ctl_tab_active = false;
-uint16_t alt_tab_timer = 0;     // we will be using them soon.
+uint16_t alt_tab_timer = 0;
 
-enum custom_keycodes {          // Make sure have the awesome keycode ready
+enum custom_keycodes {         
   ALT_TAB = QK_KB_0,
   ALT_TABR,
   CTL_TAB,
@@ -23,7 +24,10 @@ enum custom_keycodes {          // Make sure have the awesome keycode ready
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) { // This will do most of the grunt work with the keycodes.
+  rgblight_sethsv_at(0, 255, rgblight_get_val(), 1);
+  switch (keycode) { 
+    case CG_TOGG:
+        rgblight_sethsv_at(0, 255, rgblight_get_val(), 0);
     case ALT_TAB:
         if (record->event.pressed) {
             if (!is_alt_tab_active) {
@@ -102,7 +106,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             rgblight_mode(RGBLIGHT_MODE_RAINBOW_SWIRL); // Set rainbow mode
             break;
         case 1: // Function layer
-        // rgblight_mode(RGBLIGHT_MODE_TWINKLE);
             rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
             rgblight_sethsv_noeeprom(120, 255, rgblight_get_val());
             break;
