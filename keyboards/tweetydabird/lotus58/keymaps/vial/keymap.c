@@ -7,32 +7,41 @@
 #ifdef AUTO_SHIFT_ENABLE
 
 void keyboard_post_init_user(void) {
-    rgblight_set_effect_range(2, 60);
 	autoshift_disable();
 }
 #endif
 
+bool is_macOS = true;
 bool is_alt_tab_active = false;
 bool is_ctl_tab_active = false;
 uint16_t alt_tab_timer = 0;
 
-enum custom_keycodes {         
+enum custom_keycodes {
   ALT_TAB = QK_KB_0,
   ALT_TABR,
   CTL_TAB,
   CTL_TABR
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  rgblight_sethsv_at(0, 255, rgblight_get_val(), 1);
-  switch (keycode) { 
-    case CG_TOGG:
+void update_swap_led(void) {
+    if (keymap_config.swap_lctl_lgui == is_macOS) {
+        rgblight_set_effect_range(1, 59);
         rgblight_sethsv_at(0, 255, rgblight_get_val(), 0);
+    } else {
+        rgblight_set_effect_range(0, 60);
+    }
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case CG_TOGG:
+        update_swap_led();
+        break;
     case ALT_TAB:
         if (record->event.pressed) {
             if (!is_alt_tab_active) {
                 is_alt_tab_active = true;
-                register_code(KC_LGUI);
+                register_code(is_macOS ? KC_LGUI : KC_LALT);
             }
             alt_tab_timer = timer_read();
             register_code(KC_TAB);
@@ -44,7 +53,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         if (record->event.pressed) {
             if (!is_alt_tab_active) {
                 is_alt_tab_active = true;
-                register_code(KC_LGUI);
+                register_code(is_macOS ? KC_LGUI : KC_LALT);
             }
             alt_tab_timer = timer_read();
             register_code(KC_LSFT);
@@ -87,7 +96,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void matrix_scan_user(void) { // The very important timer.
   if (is_alt_tab_active) {
     if (timer_elapsed(alt_tab_timer) > 1000) {
-      unregister_code(KC_LGUI);
+      unregister_code(is_macOS ? KC_LGUI : KC_LALT);
       is_alt_tab_active = false;
     }
   }
@@ -98,6 +107,13 @@ void matrix_scan_user(void) { // The very important timer.
     }
   }
 }
+
+bool process_detected_host_os_user(os_variant_t detected_os) {
+    is_macOS = detected_os > 2;
+    update_swap_led();
+    return true;
+}
+
 
 // Function to set the color for different layers
 layer_state_t layer_state_set_user(layer_state_t state) {
