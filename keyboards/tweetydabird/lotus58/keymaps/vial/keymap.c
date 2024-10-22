@@ -110,6 +110,9 @@ void matrix_scan_user(void) { // The very important timer.
 
 bool process_detected_host_os_user(os_variant_t detected_os) {
     is_macOS = detected_os > 2;
+    if (!is_macOS) {
+        keymap_config.swap_lctl_lgui = true;
+    }
     update_swap_led();
     return true;
 }
