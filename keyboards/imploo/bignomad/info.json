@@ -1,7 +1,7 @@
 {
-    "manufacturer": "Tweetys Wild Thinking",
-    "keyboard_name": "Lotus 58 Glow",
-    "maintainer": "TweetyDaBird",
+    "manufacturer": "Imploo",
+    "keyboard_name": "BigNomad",
+    "maintainer": "Imploo",
     "bootloader_instructions": "Short marked pads on PCB, or hold top-outer key when plugging in each hand.",
     "diode_direction": "COL2ROW",
     "features": {
@@ -28,23 +28,23 @@
         "layers": {
             "enabled": true
         },
-        "led_count": 60,
+        "led_count": 82,
         "max_brightness": 120,
         "hue_steps": 1,
         "sleep": true,
-        "split": true,
-        "split_count": [30, 30]
+        "split": false,
+        "split_count": [41, 41]
     },
     "split": {
         "bootmagic": {
-            "matrix": [5, 0]
+            "matrix": [0, 0]
         },
         "enabled": true,
         "transport": {
             "sync": {
-                "indicators": true,
+                "indicators": false,
                 "layer_state": true,
-                "matrix_state": true,
+                "matrix_state": false,
                 "modifiers": true,
                 "oled": false
             }
@@ -53,7 +53,7 @@
             "enabled": true
         }
     },
-    "url": "https://lectronz.com/stores/tweetys-wild-thinking",
+    "url": "https://github.com/Imploo/BigNomad",
     "usb": {
         "device_version": "1.2.3",
         "force_nkro": true,
@@ -114,6 +114,18 @@
                 {"label": "Up", "matrix": [9, 5], "x": 8, "y": 3},
                 {"label": "N", "matrix": [8, 5], "x": 9, "y": 3.5},
                 {"label": "M", "matrix": [8, 4], "x": 10, "y": 3.25},
+                {"label": ",", "matrix": [8, 3], "x": 11, "y": 3},
+                {"label": ".", "matrix": [8, 2], "x": 12, "y": 3.25},
+                {"label": "?", "matrix": [8, 1], "x": 13, "y": 3.5},
+                {"label": "R_Ctrl", "matrix": [8, 0], "x": 14, "y": 3.75},
+                {"label": "Win", "matrix": [4, 1], "x": 2.5, "y": 4.25},
+                {"label": "Lower", "matrix": [4, 2], "x": 3.5, "y": 4.25},
+                {"label": "Alt", "matrix": [4, 3], "x": 4.5, "y": 4.5},
+                {"label": "Space", "matrix": [4, 4], "x": 6, "y": 4.25, "h": 1.25},
+                {"label": "Enter", "matrix": [9, 4], "x": 8, "y": 4.25, "h": 1.25},
+                {"label": "AltGr", "matrix": [9, 3], "x": 9.5, "y": 4.5},
+                {"label": "Raise", "matrix": [9, 2], "x": 10.5, "y": 4.25},
+                {"label": "BckSp", "matrix": [9, 1], "x": 11.5, "y": 4.25},
                 {"label": ",", "matrix": [8, 3], "x": 11, "y": 3},
                 {"label": ".", "matrix": [8, 2], "x": 12, "y": 3.25},
                 {"label": "?", "matrix": [8, 1], "x": 13, "y": 3.5},

@@ -1,4 +1,4 @@
-DEFAULT_FOLDER = tweetydabird/lotus58/promicro
+DEFAULT_FOLDER = imploo/bignomad/rp2040_ce
 TAP_DANCE_ENABLE = yes
 CAPS_WORD_ENABLE = yes
 OS_DETECTION_ENABLE = yes
