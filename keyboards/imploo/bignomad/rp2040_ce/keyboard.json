@@ -20,9 +20,6 @@
         "serial": {
             "driver": "vendor",
             "pin": "GP1"
-        },
-        "handedness": {
-            "pin": "GP8"
         }
 	},
 	"ws2812": {
