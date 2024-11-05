@@ -2,7 +2,7 @@
     "development_board": "promicro_rp2040",
 	"encoder": {
         "rotary": [
-            {"pin_a": "GP9", "pin_b": "GP10", "resolution": 2}
+            {"pin_a": "GP10", "pin_b": "GP9", "resolution": 4}
         ]
     },
     "matrix_pins": {
@@ -13,7 +13,7 @@
         "encoder": {
             "right": {
                 "rotary": [
-                    {"pin_a": "GP10", "pin_b": "GP9", "resolution": 2}
+                    {"pin_a": "GP9", "pin_b": "GP10", "resolution": 4}
                 ]
             }
         },

@@ -22,10 +22,10 @@ enum custom_keycodes {
 
 void update_swap_led(void) {
     if (keymap_config.swap_lctl_lgui == is_macOS) {
-        rgblight_set_effect_range(1, 59);
+        rgblight_set_effect_range(1, 90);
         rgblight_sethsv_at(0, 255, rgblight_get_val(), 0);
     } else {
-        rgblight_set_effect_range(0, 60);
+        rgblight_set_effect_range(0, 90);
     }
 }
 

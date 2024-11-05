@@ -33,7 +33,7 @@
         "hue_steps": 1,
         "sleep": true,
         "split": false,
-        "split_count": [41, 41]
+        "split_count": [82, 0]
     },
     "split": {
         "bootmagic": {
