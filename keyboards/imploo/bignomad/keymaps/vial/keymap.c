@@ -139,20 +139,21 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [0] = LAYOUT(
-		QK_GESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   RGB_VAI,  KC_LEFT,  KC_UP,   KC_DEL,     KC_F6,  KC_F7,  KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_MINS, KC_EQL,
-		G(KC_Z),  KC_Q,    KC_W,    KC_E,    KC_R,    RGB_VAD,  KC_7,     KC_DOWN, KC_RIGHT,   KC_F1,  KC_F2,  KC_F3,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_MINS, KC_EQL,
-		KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,     KC_4,     KC_8,    KC_9,       KC_F1,  KC_F2,  KC_F6,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
-		GUI_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,     KC_1,     KC_5,    KC_6,       KC_F4,  KC_F5,  KC_F9,   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT,
-		KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,     KC_DOT,   KC_2,    KC_3,       KC_F7,  KC_F8,  KC_F12,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-		KC_LCTL,  KC_LALT, G(KC_C), G(KC_V), KC_LGUI, KC_SPACE, KC_LSFT,  KC_0,    KC_ENTER,   KC_F10, KC_F11, KC_RSFT, KC_BSPC, KC_QUOT, KC_LBRC, KC_RBRC, KC_LPRN, KC_RPRN
-	),
-
-	[1] = LAYOUT(
-		____, ____, ____, ____, ____, ____, ____, ____, ____,   ____,    ____, ____, ____, ____, ____, ____, ____, ____,
-		____, ____, ____, ____, ____, ____, ____, ____, ____,   RGB_VAI, ____, ____, ____, ____, ____, ____, ____, ____,
-		____, ____, ____, ____, ____, ____, ____, ____, ____,   RGB_VAD, ____, ____, ____, ____, ____, ____, ____, ____,
-		____, ____, ____, ____, ____, ____, ____, ____, ____,   ____,    ____, ____, ____, ____, ____, ____, ____, ____,
-		____, ____, ____, ____, ____, ____, ____, ____, ____,   ____,    ____, ____, ____, ____, ____, ____, ____, ____,
-		____, ____, ____, ____, ____, ____, ____, ____, ____,   ____,    ____, ____, ____, ____, ____, ____, ____, ____
+		____, QK_GESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   RGB_VAI,  RGB_VAD,                                           KC_F13,  KC_F14,  KC_F15,  KC_F16,  KC_F17,  KC_F18,  KC_F19,  KC_BSPC,
+		____, KC_1,     KC_2,    KC_3,    KC_4,    KC_5,    KC_6,     KC_7,     KC_8,    KC_9,           KC_F1,  KC_F2,  KC_F3,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_MINS, KC_EQL,  KC_EQL,
+		____, KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,     KC_4,     KC_5,    KC_6,           KC_F1,  KC_F2,  KC_F6,   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC,
+		____, GUI_CAPS, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,     KC_1,     KC_2,    KC_3,           KC_F4,  KC_F5,  KC_F9,   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT,
+		____, KC_LSFT,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,     KC_DOT,   KC_0,    KC_ENT,         KC_F7,  KC_F8,  KC_F12,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_UP,   KC_RSFT,
+		____, KC_LCTL,  KC_LALT, G(KC_C), G(KC_V), KC_LALT, KC_SPACE, KC_LGUI,                                           KC_RSFT, KC_BSPC, KC_QUOT, KC_LBRC, KC_RBRC, KC_LEFT, KC_DOWN, KC_RIGHT
 	)
+
+// 	,
+// 	[1] = LAYOUT(
+// 		____, ____, ____, ____, ____, ____, ____, ____, ____,   ____,    ____, ____, ____, ____, ____, ____, ____, ____,
+// 		____, ____, ____, ____, ____, ____, ____, ____, ____,   RGB_VAI, ____, ____, ____, ____, ____, ____, ____, ____,
+// 		____, ____, ____, ____, ____, ____, ____, ____, ____,   RGB_VAD, ____, ____, ____, ____, ____, ____, ____, ____,
+// 		____, ____, ____, ____, ____, ____, ____, ____, ____,   ____,    ____, ____, ____, ____, ____, ____, ____, ____,
+// 		____, ____, ____, ____, ____, ____, ____, ____, ____,   ____,    ____, ____, ____, ____, ____, ____, ____, ____,
+// 		____, ____, ____, ____, ____, ____, ____, ____, ____,   ____,    ____, ____, ____, ____, ____, ____, ____, ____
+// 	)
 };
